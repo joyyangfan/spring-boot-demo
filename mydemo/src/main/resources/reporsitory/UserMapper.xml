@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.mydemo.domain.repository.UserMapper">
+
+
+    <select id="queryUsers" resultType="com.yf.mydemo.domain.entity.User">
+        select id as userId, name, pwd, createName, lastModifyName, isDeleted, createTime, lastModifyTime from user
+    </select>
+    <select id="queryPageUserList" resultType="com.yf.mydemo.domain.entity.User">
+        select * from
+        (
+            select id as userId, name, pwd, createName, lastModifyName, isDeleted, createTime, lastModifyTime from user
+        ) t
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+</mapper>
